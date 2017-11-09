@@ -35,3 +35,5 @@ plot(1:15, wss, type = "b",
 xlab = "Number of Clusters",
 ylab = "Within groups sum of squares")
 
+# TO do here:
+# Change the points to shapes that can be easily visualized without the need of colors
