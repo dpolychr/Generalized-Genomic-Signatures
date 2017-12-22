@@ -15,7 +15,8 @@ col.[18:19] <- 5
 autoplot(prcomp(toydf), col = "white", loadings = FALSE, loadings.label = FALSE, loadings.label.col = "black", loadings.label.vjust = 0.8, loadings.label.hjust = 0.6) + geom_point(col = alpha(col., 0.5), size=1.5, pch=19)
 
 # Do k-means clustering. Decide on the optimum number of k ommiting mammalian CNEs that are the outliers
-toydf <- readr::read_table("~/Dropbox/Papers/CNEs&GenomicSignatures/all-datasets_classification-clustering/GGS_ratio_w5_all.txt")
+par(mfrow=c(2,2))
+toydf <- readr::read_table("~/Dropbox/Papers/CNEs&GenomicSignatures/all-datasets_classification-clustering/GGS_ratio_w2_all.txt")
 toydf$X1 <- str_replace(toydf$X1, "c#", "CNE")
 toydf$X1 <- str_replace(toydf$X1, "e#", "EXON")
 toydf$X1 <- str_replace(toydf$X1, "s#", "SURROGATE")
@@ -32,9 +33,151 @@ wss[i] <- km.out$tot.withinss
 }
 # Produce a scree plot
 plot(1:15, wss, type = "b",
-main = "Optimal Number of clusters for k-means",
+main = "Optimal Number of clusters for k-means (w: 2)",
 xlab = "Number of Clusters",
 ylab = "Within groups sum of squares")
 
-# TO do here:
-# Change the points to shapes that can be easily visualized without the need of colors
+toydf <- readr::read_table("~/Dropbox/Papers/CNEs&GenomicSignatures/all-datasets_classification-clustering/GGS_ratio_w3_all.txt")
+toydf$X1 <- str_replace(toydf$X1, "c#", "CNE")
+toydf$X1 <- str_replace(toydf$X1, "e#", "EXON")
+toydf$X1 <- str_replace(toydf$X1, "s#", "SURROGATE")
+toydf <- toydf[c(-7,-8,-18,-19),]
+labels <- toydf$X1
+toydf <- toydf %>% select(-X1, -X2) # Remove first two columns
+
+wss <- 0
+for (i in 1:15) {
+  # Fit the model: km.out
+  km.out <- kmeans(toydf, centers = i, nstart = 20, iter.max = 50)
+  # Save the within cluster sum of squares
+  wss[i] <- km.out$tot.withinss
+}
+# Produce a scree plot
+plot(1:15, wss, type = "b",
+     main = "Optimal Number of clusters for k-means (w: 3)",
+     xlab = "Number of Clusters",
+     ylab = "Within groups sum of squares")
+
+toydf <- readr::read_table("~/Dropbox/Papers/CNEs&GenomicSignatures/all-datasets_classification-clustering/GGS_ratio_w3_all.txt")
+toydf$X1 <- str_replace(toydf$X1, "c#", "CNE")
+toydf$X1 <- str_replace(toydf$X1, "e#", "EXON")
+toydf$X1 <- str_replace(toydf$X1, "s#", "SURROGATE")
+toydf <- toydf[c(-7,-8,-18,-19),]
+labels <- toydf$X1
+toydf <- toydf %>% select(-X1, -X2) # Remove first two columns
+
+wss <- 0
+for (i in 1:15) {
+  # Fit the model: km.out
+  km.out <- kmeans(toydf, centers = i, nstart = 20, iter.max = 50)
+  # Save the within cluster sum of squares
+  wss[i] <- km.out$tot.withinss
+}
+# Produce a scree plot
+plot(1:15, wss, type = "b",
+     main = "Optimal Number of clusters for k-means (w: 4)",
+     xlab = "Number of Clusters",
+     ylab = "Within groups sum of squares")
+
+toydf <- readr::read_table("~/Dropbox/Papers/CNEs&GenomicSignatures/all-datasets_classification-clustering/GGS_ratio_w3_all.txt")
+toydf$X1 <- str_replace(toydf$X1, "c#", "CNE")
+toydf$X1 <- str_replace(toydf$X1, "e#", "EXON")
+toydf$X1 <- str_replace(toydf$X1, "s#", "SURROGATE")
+toydf <- toydf[c(-7,-8,-18,-19),]
+labels <- toydf$X1
+toydf <- toydf %>% select(-X1, -X2) # Remove first two columns
+
+wss <- 0
+for (i in 1:15) {
+  # Fit the model: km.out
+  km.out <- kmeans(toydf, centers = i, nstart = 20, iter.max = 50)
+  # Save the within cluster sum of squares
+  wss[i] <- km.out$tot.withinss
+}
+# Produce a scree plot
+plot(1:15, wss, type = "b",
+     main = "Optimal Number of clusters for k-means (w: 5)",
+     xlab = "Number of Clusters",
+     ylab = "Within groups sum of squares")
+
+# Do k-means clustering. Decide on the optimum number of k ommiting having all datasets (supplementary)
+par(mfrow=c(2,2))
+toydf <- readr::read_table("~/Dropbox/Papers/CNEs&GenomicSignatures/all-datasets_classification-clustering/GGS_ratio_w2_all.txt")
+toydf$X1 <- str_replace(toydf$X1, "c#", "CNE")
+toydf$X1 <- str_replace(toydf$X1, "e#", "EXON")
+toydf$X1 <- str_replace(toydf$X1, "s#", "SURROGATE")
+labels <- toydf$X1
+toydf <- toydf %>% select(-X1, -X2) # Remove first two columns
+
+wss <- 0
+for (i in 1:15) {
+  # Fit the model: km.out
+  km.out <- kmeans(toydf, centers = i, nstart = 20, iter.max = 50)
+  # Save the within cluster sum of squares
+  wss[i] <- km.out$tot.withinss
+}
+# Produce a scree plot
+plot(1:15, wss, type = "b",
+     main = "Optimal Number of clusters for k-means (w: 2)",
+     xlab = "Number of Clusters",
+     ylab = "Within groups sum of squares")
+
+toydf <- readr::read_table("~/Dropbox/Papers/CNEs&GenomicSignatures/all-datasets_classification-clustering/GGS_ratio_w3_all.txt")
+toydf$X1 <- str_replace(toydf$X1, "c#", "CNE")
+toydf$X1 <- str_replace(toydf$X1, "e#", "EXON")
+toydf$X1 <- str_replace(toydf$X1, "s#", "SURROGATE")
+labels <- toydf$X1
+toydf <- toydf %>% select(-X1, -X2) # Remove first two columns
+
+wss <- 0
+for (i in 1:15) {
+  # Fit the model: km.out
+  km.out <- kmeans(toydf, centers = i, nstart = 20, iter.max = 50)
+  # Save the within cluster sum of squares
+  wss[i] <- km.out$tot.withinss
+}
+# Produce a scree plot
+plot(1:15, wss, type = "b",
+     main = "Optimal Number of clusters for k-means (w: 3)",
+     xlab = "Number of Clusters",
+     ylab = "Within groups sum of squares")
+
+toydf <- readr::read_table("~/Dropbox/Papers/CNEs&GenomicSignatures/all-datasets_classification-clustering/GGS_ratio_w3_all.txt")
+toydf$X1 <- str_replace(toydf$X1, "c#", "CNE")
+toydf$X1 <- str_replace(toydf$X1, "e#", "EXON")
+toydf$X1 <- str_replace(toydf$X1, "s#", "SURROGATE")
+labels <- toydf$X1
+toydf <- toydf %>% select(-X1, -X2) # Remove first two columns
+
+wss <- 0
+for (i in 1:15) {
+  # Fit the model: km.out
+  km.out <- kmeans(toydf, centers = i, nstart = 20, iter.max = 50)
+  # Save the within cluster sum of squares
+  wss[i] <- km.out$tot.withinss
+}
+# Produce a scree plot
+plot(1:15, wss, type = "b",
+     main = "Optimal Number of clusters for k-means (w: 4)",
+     xlab = "Number of Clusters",
+     ylab = "Within groups sum of squares")
+
+toydf <- readr::read_table("~/Dropbox/Papers/CNEs&GenomicSignatures/all-datasets_classification-clustering/GGS_ratio_w3_all.txt")
+toydf$X1 <- str_replace(toydf$X1, "c#", "CNE")
+toydf$X1 <- str_replace(toydf$X1, "e#", "EXON")
+toydf$X1 <- str_replace(toydf$X1, "s#", "SURROGATE")
+labels <- toydf$X1
+toydf <- toydf %>% select(-X1, -X2) # Remove first two columns
+
+wss <- 0
+for (i in 1:15) {
+  # Fit the model: km.out
+  km.out <- kmeans(toydf, centers = i, nstart = 20, iter.max = 50)
+  # Save the within cluster sum of squares
+  wss[i] <- km.out$tot.withinss
+}
+# Produce a scree plot
+plot(1:15, wss, type = "b",
+     main = "Optimal Number of clusters for k-means (w: 5)",
+     xlab = "Number of Clusters",
+     ylab = "Within groups sum of squares")
