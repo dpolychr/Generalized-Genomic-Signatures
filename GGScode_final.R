@@ -32,6 +32,7 @@ wss[i] <- km.out$tot.withinss
 }
 # Produce a scree plot
 plot(1:15, wss, type = "b",
+main = "Optimal Number of clusters for k-means",
 xlab = "Number of Clusters",
 ylab = "Within groups sum of squares")
 
